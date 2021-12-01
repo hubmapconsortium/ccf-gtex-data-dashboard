@@ -1,0 +1,90 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v4.json",
+  "description": "Report for HuBMAP CCF Registrations",
+  "autosize": {"type": "fit", "resize": true},
+  "config": {"view": {"strokeOpacity": 0}, "style": {"guide-label": {"width": 10}}},
+  "vconcat": [
+    {
+      "hconcat": [
+        {
+          "mark": {"type": "bar", "tooltip": {"content": "data"}},
+          "data": {"name": "csvItems"},
+          "transform": [
+            {"calculate": "datum.organ", "as": "organ"}
+          ],
+          "encoding": {
+            "x": {"aggregate": "distinct", "field": "location", "title": "# RUI Locations"},
+            "y": {"field": "ref_organ", "type": "nominal", "sort": "y", "title": "Reference Organ"}
+          }
+        },
+        {
+          "mark": {"type": "bar", "tooltip": {"content": "data"}},
+          "data": {"name": "csvItems"},
+          "transform": [
+            {"calculate": "datum.organ", "as": "organ"}
+          ],
+          "encoding": {
+            "x": {"aggregate": "distinct", "field": "location", "title": "# RUI Locations"},
+            "y": {"field": "organ", "type": "nominal", "sort": "y", "title": "Organ"}
+          }
+        }
+      ]
+    },
+    {
+      "hconcat": [
+        {
+          "mark": {"type": "bar", "tooltip": {"content": "data"}},
+          "data": {"name": "csvItems"},
+          "encoding": {
+            "x": {"aggregate": "distinct", "field": "block", "title": "# Blocks"},
+            "y": {"field": "organ", "type": "nominal", "sort": "y", "title": "Organ"}
+          }
+        },
+        {
+          "mark": {"type": "bar", "tooltip": {"content": "data"}},
+          "data": {"name": "csvItems"},
+          "encoding": {
+            "x": {"aggregate": "distinct", "field": "section", "title": "# Sections"},
+            "y": {"field": "organ", "type": "nominal", "sort": "y", "title": "Organ"}
+          }
+        },
+        {
+          "mark": {"type": "bar", "tooltip": {"content": "data"}},
+          "data": {"name": "csvItems"},
+          "encoding": {
+            "x": {"aggregate": "distinct", "field": "location", "title": "# RUI Locations"},
+            "y": {"field": "organ", "type": "nominal", "sort": "y", "title": "Organ"}
+          }
+        }
+      ]
+    },
+    {
+      "hconcat": [
+        {
+          "mark": {"type": "bar", "tooltip": {"content": "data"}},
+          "data": {"name": "csvItems"},
+          "encoding": {
+            "x": {"aggregate": "distinct", "field": "block", "title": "# Blocks"},
+            "y": {"field": "provider", "type": "nominal", "sort": "y", "title": "Tissue Provider"}
+          }
+        },
+        {
+          "mark": {"type": "bar", "tooltip": {"content": "data"}},
+          "data": {"name": "csvItems"},
+          "encoding": {
+            "x": {"aggregate": "distinct", "field": "section", "title": "# Sections"},
+            "y": {"field": "provider", "type": "nominal", "sort": "y", "title": "Tissue Provider"}
+          }
+        },
+        {
+          "mark": {"type": "bar", "tooltip": {"content": "data"}},
+          "data": {"name": "csvItems"},
+          "encoding": {
+            "x": {"aggregate": "distinct", "field": "location", "title": "# RUI Locations"},
+            "y": {"field": "provider", "type": "nominal", "sort": "y", "title": "Tissue Provider"}
+          }
+        }
+      ]
+    }
+  ]
+}
