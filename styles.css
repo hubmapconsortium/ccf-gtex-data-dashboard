@@ -158,3 +158,6 @@ body {
   }
 }
 
+.tabulator {
+  width: fit-content !important;
+}
