@@ -20,7 +20,6 @@ function invalidKey() {
 }
 
 function resultsAsDatasets(results, asctbAPI, versions) {
-  console.log(versions)
   const sheetOptions = versions.sheetOptions;
   const nodes = asctbAPI.data.nodes;
   const csvItems = [];
@@ -61,10 +60,10 @@ function main() {
   }
 
   Promise.all([
-    fetch("vis.vl.json").then((result) => result.json()),
+    fetch("https://hubmapconsortium.github.io/ccf-gtex-data-dashboard/vis.vl.json").then((result) => result.json()),
     fetch(searchUri).then((result) => result.ok ? result.json() : invalidKey()),
     fetch(asctbAPIUri).then((result) => result.ok ? result.json() : invalidKey()),
-    fetch("versions.json").then((result) => result.json()),
+    fetch("https://hubmapconsortium.github.io/ccf-gtex-data-dashboard/versions.json").then((result) => result.json()),
   ]).then(([spec, jsonData, asctbAPI, versions]) => {
     // Embed the graph data in the spec for ease of use from Vega Editor
     spec.datasets = resultsAsDatasets(jsonData, asctbAPI, versions);

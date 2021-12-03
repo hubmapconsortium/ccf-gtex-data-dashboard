@@ -3,88 +3,46 @@
   "description": "Report for HuBMAP CCF Registrations",
   "autosize": {"type": "fit", "resize": true},
   "config": {"view": {"strokeOpacity": 0}, "style": {"guide-label": {"width": 10}}},
-  "vconcat": [
+  "data": {"name": "csvItems"},
+  "transform": [
     {
-      "hconcat": [
+      "calculate": "(datum['Ontology term'] !== 'No matches')", "as": "hasMatches"
+    }
+  ],
+  "hconcat": [
+    {
+      "transform": [
         {
-          "mark": {"type": "bar", "tooltip": {"content": "data"}},
-          "data": {"name": "csvItems"},
-          "transform": [
-            {"calculate": "datum.organ", "as": "organ"}
-          ],
-          "encoding": {
-            "x": {"aggregate": "distinct", "field": "location", "title": "# RUI Locations"},
-            "y": {"field": "ref_organ", "type": "nominal", "sort": "y", "title": "Reference Organ"}
-          }
-        },
-        {
-          "mark": {"type": "bar", "tooltip": {"content": "data"}},
-          "data": {"name": "csvItems"},
-          "transform": [
-            {"calculate": "datum.organ", "as": "organ"}
-          ],
-          "encoding": {
-            "x": {"aggregate": "distinct", "field": "location", "title": "# RUI Locations"},
-            "y": {"field": "organ", "type": "nominal", "sort": "y", "title": "Organ"}
-          }
+          "aggregate": [{"op": "count", "field": "Ontology ID", "as": "matches"}],
+          "groupby": ["ASCT+B Table"]
         }
-      ]
+      ],
+      "mark": {"type": "bar", "tooltip": {"content": "data"}},
+      "encoding": {
+        "x": {"field": "ASCT+B Table", "type": "nominal", "sort": "y", "title": "ASCT+B Table"},
+        "y": {"field": "matches", "type":"quantitative", "title": "# of matches"}
+      }
     },
     {
-      "hconcat": [
+      "transform": [
         {
-          "mark": {"type": "bar", "tooltip": {"content": "data"}},
-          "data": {"name": "csvItems"},
-          "encoding": {
-            "x": {"aggregate": "distinct", "field": "block", "title": "# Blocks"},
-            "y": {"field": "organ", "type": "nominal", "sort": "y", "title": "Organ"}
-          }
+          "aggregate": [{"op":"max", "field": "hasMatches", "as": "hasMatch"}],
+          "groupby": ["GTEx Ontology ID"]
         },
         {
-          "mark": {"type": "bar", "tooltip": {"content": "data"}},
-          "data": {"name": "csvItems"},
-          "encoding": {
-            "x": {"aggregate": "distinct", "field": "section", "title": "# Sections"},
-            "y": {"field": "organ", "type": "nominal", "sort": "y", "title": "Organ"}
-          }
-        },
-        {
-          "mark": {"type": "bar", "tooltip": {"content": "data"}},
-          "data": {"name": "csvItems"},
-          "encoding": {
-            "x": {"aggregate": "distinct", "field": "location", "title": "# RUI Locations"},
-            "y": {"field": "organ", "type": "nominal", "sort": "y", "title": "Organ"}
-          }
+          "aggregate": [{"op":"count", "field": "hasMatch", "as": "count"}],
+          "groupby": ["hasMatch"]
         }
-      ]
-    },
-    {
-      "hconcat": [
-        {
-          "mark": {"type": "bar", "tooltip": {"content": "data"}},
-          "data": {"name": "csvItems"},
-          "encoding": {
-            "x": {"aggregate": "distinct", "field": "block", "title": "# Blocks"},
-            "y": {"field": "provider", "type": "nominal", "sort": "y", "title": "Tissue Provider"}
-          }
-        },
-        {
-          "mark": {"type": "bar", "tooltip": {"content": "data"}},
-          "data": {"name": "csvItems"},
-          "encoding": {
-            "x": {"aggregate": "distinct", "field": "section", "title": "# Sections"},
-            "y": {"field": "provider", "type": "nominal", "sort": "y", "title": "Tissue Provider"}
-          }
-        },
-        {
-          "mark": {"type": "bar", "tooltip": {"content": "data"}},
-          "data": {"name": "csvItems"},
-          "encoding": {
-            "x": {"aggregate": "distinct", "field": "location", "title": "# RUI Locations"},
-            "y": {"field": "provider", "type": "nominal", "sort": "y", "title": "Tissue Provider"}
-          }
-        }
-      ]
+      ],
+      "mark": "arc",
+      "encoding": {
+        "theta": {"field": "count", "type": "quantitative"},
+        "color": {"field": "hasMatch", "type": "nominal"},
+        "tooltip": [
+          {"field": "hasMatch", "type": "ordinal", "title": "Matched"},
+          {"field": "count", "type": "quantitative", "title": "Count"}
+        ]
+      }
     }
   ]
 }
