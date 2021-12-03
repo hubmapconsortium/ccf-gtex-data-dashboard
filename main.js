@@ -64,7 +64,7 @@ function main() {
     fetch("vis.vl.json").then((result) => result.json()),
     fetch(searchUri).then((result) => result.ok ? result.json() : invalidKey()),
     fetch(asctbAPIUri).then((result) => result.ok ? result.json() : invalidKey()),
-    fetch("versions.json")((result) => result.json()),
+    fetch("versions.json").then((result) => result.json()),
   ]).then(([spec, jsonData, asctbAPI, versions]) => {
     // Embed the graph data in the spec for ease of use from Vega Editor
     spec.datasets = resultsAsDatasets(jsonData, asctbAPI, versions);
