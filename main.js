@@ -20,6 +20,9 @@ function invalidKey() {
 }
 
 function resultsAsDatasets(results, asctbAPI, versions) {
+  console.log(results)
+  console.log(asctbAPI)
+  console.log(versions)
   const sheetOptions = versions.sheetOptions;
   const nodes = asctbAPI.data.nodes;
   const csvItems = [];
@@ -54,17 +57,17 @@ function downloadTable() {
 
 function main() {
   let searchUri = 'https://gtexportal.org/rest/v1/dataset/tissueInfo?datasetId=gtex_v8&format=json';
-  let asctbAPIUri = 'https://asctb-api.herokuapp.com/v2/csv?csvUrl=https://docs.google.com/spreadsheets/d/1tK916JyG5ZSXW_cXfsyZnzXfjyoN-8B2GXLbYD6_vF0/export?format=csv%26gid=2137043090&output=graph';
-  if (localStorage.getItem('HUBMAP_KEY')) {
-    searchUri = `${searchUri}&token=${localStorage.getItem('HUBMAP_KEY')}`;
-  }
+  // let asctbAPIUri = 'https://asctb-api.herokuapp.com/v2/csv?csvUrl=https://docs.google.com/spreadsheets/d/1tK916JyG5ZSXW_cXfsyZnzXfjyoN-8B2GXLbYD6_vF0/export?format=csv%26gid=2137043090&output=graph';
+  let organUris = [];
 
   Promise.all([
-    fetch("vis.vl.json").then((result) => result.json()),
+    fetch("https://hubmapconsortium.github.io/ccf-gtex-data-dashboard/vis.vl.json").then((result) => result.json()),
     fetch(searchUri).then((result) => result.ok ? result.json() : invalidKey()),
-    fetch(asctbAPIUri).then((result) => result.ok ? result.json() : invalidKey()),
-    fetch("versions.json").then((result) => result.json()),
-  ]).then(([spec, jsonData, asctbAPI, versions]) => {
+    // fetch(asctbAPIUri).then((result) => result.ok ? result.json() : invalidKey()),
+    fetch("https://hubmapconsortium.github.io/ccf-gtex-data-dashboard/sheet-config.json").then((result) => result.json()),
+    fetch("https://hubmapconsortium.github.io/ccf-gtex-data-dashboard/versions.json").then((result) => result.json()),
+  ]).then(([spec, jsonData, config, versions]) => {
+    console.log(config)
     // Embed the graph data in the spec for ease of use from Vega Editor
     spec.datasets = resultsAsDatasets(jsonData, asctbAPI, versions);
     table = new Tabulator("#table", {
