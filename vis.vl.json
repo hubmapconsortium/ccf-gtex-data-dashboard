@@ -1,6 +1,5 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v4.json",
-  "description": "Report for HuBMAP CCF Registrations",
   "autosize": {"type": "fit", "resize": true},
   "config": {"view": {"strokeOpacity": 0}, "style": {"guide-label": {"width": 10}}},
   "data": {"name": "csvItems"},
@@ -9,10 +8,11 @@
       "calculate": "(datum['Ontology term'] !== 'No matches')", "as": "hasMatches"
     }
   ],
+  "spacing": 100,
   "hconcat": [
     {
       "title": "# matches per table",
-      "width": 300,
+      "width": 400,
       "height": 300,
       "transform": [
         {"filter": "datum['ASCT+B Table'] !== 'No matches'"},
@@ -23,8 +23,8 @@
       ],
       "mark": {"type": "bar"},
       "encoding": {
-        "x": {"field": "ASCT+B Table", "type": "nominal", "sort": "y", "title": "ASCT+B Table"},
-        "y": {"field": "matches", "type":"quantitative", "title": "# of matches"},
+        "x": {"field": "ASCT+B Table", "type": "nominal", "sort": "y", "title": "ASCT+B Table", "axis": {"labelFontSize": 14}},
+        "y": {"field": "matches", "type":"quantitative", "title": "# of matches", "axis": {"labelFontSize": 14}},
         "tooltip": [
           {"field": "ASCT+B Table", "type": "ordinal", "title": "ASCT+B Table"},
           {"field": "matches", "type": "quantitative", "title": "# of matches"}
@@ -32,7 +32,7 @@
       }
     },
     {
-      "width": 300,
+      "width": 400,
       "height": 300,
       "title": "# matched vs not matched",
       "transform": [

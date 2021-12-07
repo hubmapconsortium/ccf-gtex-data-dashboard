@@ -1,42 +1,19 @@
 /* jshint esversion: 6 */
 
-function setApiKey() {
-  const apiKey = prompt('Enter API Key (leave blank to clear)', '');
-  localStorage.removeItem('HUBMAP_KEY');
-  if (apiKey.trim().length > 0) {
-    localStorage.setItem('HUBMAP_KEY', apiKey);
-  }
-  location.reload();
-}
-
-function invalidKey() {
-  if (localStorage.getItem('HUBMAP_KEY') !== null) {
-    localStorage.removeItem('HUBMAP_KEY');
-    alert('An invalid/stale key was found. Clearing key and refreshing the page');
-    location.reload();
-  } else {
-    throw new Error('Something went wrong with the API request!');
-  }
-}
-
-function resultsAsDatasets(jsonData, asctbAPI, versions) {
-  const sheetOptions = versions.sheetOptions;
+function resultsAsDatasets(jsonData, asctbAPI) {
   const nodes = asctbAPI.data.nodes;
   const csvItems = [];
   jsonData.tissueInfo.forEach(tissueInfo => {
     const uberonId = tissueInfo.uberonId;
     const match = nodes.find(node => node.metadata.ontologyId === `UBERON:${uberonId}`);
-    const matchingEntry = sheetOptions.find(entry => entry.title === tissueInfo.tissueSite);
     const csvItem = {
       "GTEx Ontology ID": `UBERON:${uberonId}`,
       "GTEx Tissue Site": tissueInfo.tissueSiteDetail || 'No matches',
       "Ontology term": match ? match.metadata.label : 'No matches',
       "ASCT+B Table": 'No matches'
     };
-    if (matchingEntry && match) {
-      for (const version of matchingEntry.version) {
-        csvItems.push({ ...csvItem, "ASCT+B Table": version.value });
-      }
+    if (match) {
+      csvItems.push({ ...csvItem, "ASCT+B Table": nodes[1].name });
     } else {
       csvItems.push(csvItem);
     }
@@ -57,7 +34,7 @@ function getOrganUris(config) {
   for (const organ of config.sheetDetails) {
     if (organ.version) {
       for (const version of organ.version) {
-        let asctbAPIUri = `https://asctb-api.herokuapp.com/v2/csv?csvUrl=https://docs.google.com/spreadsheets/d/${version.sheetId}/export?format=csv%26gid=${version.gid}&output=graph`;
+        let asctbAPIUri = `https://asctb-api.herokuapp.com/v2/${version.sheetId}/${version.gid}/graph?cache=true`;
         organUris.push(asctbAPIUri);
       }
     }
@@ -78,27 +55,22 @@ function unmatchingData(csvItems) {
 }
 
 function addMatches(result, matches) {
-  const ontologyId = matches[0]['GTEx Ontology ID'];
-  result = result.filter(item => item['GTEx Ontology ID'] !== ontologyId);
+  const ontologyIds = matches.map(entry => entry['GTEx Ontology ID']);
+  result = result.filter(item => !ontologyIds.includes(item['GTEx Ontology ID']));
   return result.concat(matches);
 }
 
 function main() {
-  let searchUri = 'https://gtexportal.org/rest/v1/dataset/tissueInfo?datasetId=gtex_v8&format=json';
-
   Promise.all([
     fetch("vis.vl.json").then((result) => result.json()),
-    fetch(searchUri).then((result) => result.ok ? result.json() : invalidKey()),
+    fetch('https://gtexportal.org/rest/v1/dataset/tissueInfo?datasetId=gtex_v8&format=json').then((result) => result.json()),
     fetch("sheet-config.json").then((result) => result.json()),
     fetch("versions.json").then((result) => result.json()),
   ]).then(([spec, jsonData, config, versions]) => {
-    const organUris = getOrganUris(config);
-    let x = [];
-    for (const uri of organUris) {
-      x.push(fetch(uri).then((result) => result.ok ? result.json() : invalidKey()));
-    }
+    let organUris = getOrganUris(config);
+    organUris = organUris.map(uri => fetch(uri).then((result) => result.json()))
     
-    Promise.all(x).then((allSets) => {
+    Promise.all(organUris).then((allSets) => {
       let result = [];
       let seen = new Set;
       for (const dataset of allSets) {
@@ -116,12 +88,13 @@ function main() {
           }
         }
       }
-      let unique = [...new Set(result)];
-      unique.sort((a, b) => (a['ASCT+B Table'] === 'No matches') ? 1 : -1);
-      return unique;
+      result.sort((a, b) => (a['ASCT+B Table'] === 'No matches') ? 1 : -1);
+      return result;
     }).then((result) => {
+      spec.datasets = {csvItems: result};
       table = new Tabulator("#table", {
-        data: result,
+        layout:"fitColumns",
+        data: spec.datasets.csvItems,
         autoColumns: true
       });
       // Embed the graph data in the spec for ease of use from Vega Editor
