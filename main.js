@@ -39,6 +39,7 @@ function getOrganUris(config) {
       }
     }
   }
+
   return organUris;
 }
 
@@ -78,7 +79,7 @@ function main() {
         const matches = matchingData(csvItems);
         const unmatches = unmatchingData(csvItems);
         if (result.length === 0) {
-          result = result.concat(unmatches);
+          result = unmatches;
         }
         if (matches.length > 0) {
           const ontologyId = matches[0]['GTEx Ontology ID'];

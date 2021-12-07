@@ -8,7 +8,6 @@
       "calculate": "(datum['Ontology term'] !== 'No matches')", "as": "hasMatches"
     }
   ],
-  "spacing": 30,
   "hconcat": [
     {
       "title": "# matches per table",
@@ -24,7 +23,7 @@
       "mark": {"type": "bar"},
       "encoding": {
         "x": {"field": "ASCT+B Table", "type": "nominal", "sort": "y", "title": "ASCT+B Table", "axis": {"labelFontSize": 14}},
-        "y": {"field": "matches", "type":"quantitative", "title": "# of matches", "axis": {"labelFontSize": 14}},
+        "y": {"field": "matches", "type":"quantitative", "title": "# of matches", "axis": {"labelFontSize": 14, "tickMinStep": 1}},
         "tooltip": [
           {"field": "ASCT+B Table", "type": "ordinal", "title": "ASCT+B Table"},
           {"field": "matches", "type": "quantitative", "title": "# of matches"}
