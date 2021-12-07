@@ -8,7 +8,7 @@
       "calculate": "(datum['Ontology term'] !== 'No matches')", "as": "hasMatches"
     }
   ],
-  "spacing": 50,
+  "spacing": 30,
   "hconcat": [
     {
       "title": "# matches per table",
