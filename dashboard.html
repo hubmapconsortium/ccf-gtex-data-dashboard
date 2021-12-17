@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="en">
   <head>
-    <title>CCF-GTEx Pilot</title>
+    <title>CCF-GTEx Pilot -- Data Dashboard</title>
     <link rel="stylesheet" href="styles.css">
     <link rel="icon" type="image/png" href="img/favicon.png">
     <link rel="apple-touch-icon" href="img/apple-touch-icon.png">
@@ -18,15 +18,14 @@
   <body>
     <header class="main-header"><div class="main-logo"><a href="https://hubmapconsortium.github.io/ccf-gtex-pilot/" title="Link to HuBMAP CCF GTEx Pilot Page"><img src="img/logo-hubmap.svg" alt="HuBMAP logo" class="logo"></a></div></header>
     <div class="main">
-      <h1>CCF-GTEx Pilot</h1>
+      <h1>CCF-GTEx Data Dashboard</h1>
 
-      <h2>Primary Deliverables</h2>
-      <ul>
-        <li><a href="dashboard.html">ASCT+B / Anatogram Data Dashboard</a></li>
-        <li><a href="ccf-eui.html">GTEx Data in the CCF</a></li>
-        <li><a href="https://ccf-api.herokuapp.com/ccf-api-spec.yaml">CCF-API OpenAPI Spec</a></li>
-        <li><a href="https://ccf-api.herokuapp.com/">CCF-API Implementation</a> (<a href="https://github.com/hubmapconsortium/ccf-ui">source code</a>)</li>
-      </ul>
+      <div id="visualization" style="width: 100%"></div>
+
+      <div style="text-align: right; width: 100%; margin: 5px;">
+        <button onclick="downloadTable()">Download Table as CSV</button>
+      </div>
+      <div id="table" style="width: 100%; height: 600px;"></div>
     </div>
   </body>
 </html>
