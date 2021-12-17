@@ -1,1 +1,1 @@
-# ccf-gtex-data-dashboard
+# CCF-GTEx Pilot
