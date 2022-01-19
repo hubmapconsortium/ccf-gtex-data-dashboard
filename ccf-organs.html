@@ -11,6 +11,7 @@
         'https://ccf-api.herokuapp.com/v1/hubmap/rui_locations.jsonld'
       ];
       organInfo.highlightProviders = ['GTEx Project'];
+      organInfo.useRemoteApi = false;
 
       document.getElementById('organ-chooser').addEventListener('change', (event) => {
         const iri = event.target.value;
