@@ -7,8 +7,8 @@
     window.addEventListener('DOMContentLoaded', () => {
       const organInfo = document.querySelector('ccf-organ-info');
       organInfo.dataSources = [
-        'https://cdn.jsdelivr.net/gh/hubmapconsortium/ccf-ui@staging/assets/gtex/data/rui_locations.jsonld',
-        'https://ccf-api.herokuapp.com/v1/hubmap/rui_locations.jsonld'
+        'https://cdn.jsdelivr.net/gh/hubmapconsortium/ccf-ui@gh-pages/assets/gtex/data/rui_locations.jsonld',
+        'https://ccf-api.hubmapconsortium.org/v1/hubmap/rui_locations.jsonld'
       ];
       organInfo.highlightProviders = ['GTEx Project'];
       organInfo.useRemoteApi = false;
@@ -24,8 +24,8 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&amp;display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons|Material+Icons+Outlined" rel="stylesheet">
   <link href="styles.css" rel="stylesheet">
-  <link href="https://cdn.jsdelivr.net/gh/hubmapconsortium/ccf-ui@staging/organ-info/styles.css" rel="stylesheet">
-  <script src="https://cdn.jsdelivr.net/gh/hubmapconsortium/ccf-ui@staging/organ-info/wc.js" async></script>
+  <link href="https://cdn.jsdelivr.net/gh/hubmapconsortium/ccf-ui@gh-pages/organ-info/styles.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/gh/hubmapconsortium/ccf-ui@gh-pages/organ-info/wc.js" async></script>
 </head>
 <body class="mat-typography">
   <header class="main-header"><div class="main-logo"><a href="https://hubmapconsortium.github.io/ccf-gtex-pilot/" title="Link to HuBMAP CCF GTEx Pilot Page"><img src="img/logo-hubmap.svg" alt="HuBMAP logo" class="logo"></a></div></header>
