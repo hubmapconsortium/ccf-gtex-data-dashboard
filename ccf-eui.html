@@ -8,7 +8,10 @@
     window.dbOptions = {
       hubmapDataService: 'search-api',
       dataSources: [
-        'https://cdn.jsdelivr.net/gh/hubmapconsortium/ccf-ui@gh-pages/assets/gtex/data/rui_locations.jsonld',
+        'https://ccf-api--staging.herokuapp.com/v1/gtex/rui_locations.jsonld',
+        
+        // Uncomment when dynamic gtex route is merged to production
+        // 'https://ccf-api.hubmapconsortium.org/v1/gtex/rui_locations.jsonld'
         
         // Uncomment below to add HuBMAP data
         // 'https://ccf-api.hubmapconsortium.org/v1/hubmap/rui_locations.jsonld'
