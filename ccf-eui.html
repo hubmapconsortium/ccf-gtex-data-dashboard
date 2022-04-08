@@ -4,48 +4,26 @@
   <meta charset="utf-8">
   <title>CCF-GTEx Pilot -- GTEx data registered via the CCF RUI</title>
   <base href="https://cdn.jsdelivr.net/gh/hubmapconsortium/ccf-ui@gh-pages/">
-  <script>
-    window.dbOptions = {
-      hubmapDataService: 'search-api',
-      dataSources: [
-        'https://ccf-api--staging.herokuapp.com/v1/gtex/rui_locations.jsonld',
-        
-        // Uncomment when dynamic gtex route is merged to production
-        // 'https://ccf-api.hubmapconsortium.org/v1/gtex/rui_locations.jsonld'
-        
-        // Uncomment below to add HuBMAP data
-        // 'https://ccf-api.hubmapconsortium.org/v1/hubmap/rui_locations.jsonld'
-      ],
-      hubmapPortalUrl: 'https://portal.hubmapconsortium.org/',
-      hubmapDataUrl: '',
-      hubmapAssetsUrl: 'https://assets.hubmapconsortium.org',
-      hubmapToken: '',
-      useRemoteApi: false
-    };
-  </script>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="icon" type="image/x-icon" href="favicon.ico">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&amp;display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons|Material+Icons+Outlined" rel="stylesheet">
   <link href="styles.css" rel="stylesheet">
-  <style>
-    .back-button {
-      position: absolute !important;
-      top: 14px;
-      left: 390px;
-      z-index: 1000;
-      text-align: center !important;
-      background: white;
-      color: black;
-    }
-  </style>
   <script src="wc.js" async></script>
 </head>
-<body class="mat-typography">
-  <a class="mat-focus-indicator mat-button mat-button-base back-button"
-    href="https://hubmapconsortium.github.io/ccf-gtex-pilot/">
-      <span class="mat-button-wrapper">BACK</span>
-  </a>
-  <ccf-eui class="light-theme"></ccf-eui>
+<body>
+  <ccf-eui theme="gtex" use-remote-api="false" hubmap-data-url="" login-disabled="true" logo-tooltip=""
+    home-url="https://hubmapconsortium.github.io/ccf-gtex-pilot/"></ccf-eui>
+  <script>
+    window.addEventListener('DOMContentLoaded', () => {
+      const eui = document.querySelector('ccf-eui');
+      eui.dataSources = [
+        'https://ccf-api.hubmapconsortium.org/v1/gtex/rui_locations.jsonld',
+        
+        // Uncomment below to add HuBMAP data
+        // 'https://ccf-api.hubmapconsortium.org/v1/hubmap/rui_locations.jsonld'
+      ];
+    });
+  </script>
 </body>
 </html>
