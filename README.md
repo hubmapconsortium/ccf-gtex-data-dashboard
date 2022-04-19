@@ -2,7 +2,16 @@
 
 ## Primary Deliverables
 
-* [CCF-API OpenAPI specification](https://ccf-api.hubmapconsortium.org/ccf-api-spec.yaml)
+* CCF API
+  * Production: <https://ccf-api.hubmapconsortium.org>
+  * Staging: <https://ccf-api--staging.herokuapp.com>
+  * OpenAPI Specification: [ccf-api-spec.yaml](https://ccf-api.hubmapconsortium.org/ccf-api-spec.yaml)
+* CCF API Client Libraries:
+  * JavaScript: ![npm (scoped)](https://img.shields.io/npm/v/@ccf-openapi/js-client)  [@ccf-openapi/js-client](https://www.npmjs.com/package/@ccf-openapi/js-client)
+  * TypeScript: ![npm (scoped)](https://img.shields.io/npm/v/@ccf-openapi/ts-client)  [@ccf-openapi/ts-client](https://www.npmjs.com/package/@ccf-openapi/ts-client)
+  * Angular 12+: ![npm (scoped)](https://img.shields.io/npm/v/@ccf-openapi/ng-client) [@ccf-openapi/ng-client](https://www.npmjs.com/package/@ccf-openapi/ng-client)
+  * Python 3.6+: ![PyPI](https://img.shields.io/pypi/v/ccf-openapi) [ccf-openapi](https://pypi.org/project/ccf-openapi/)
+
 * [CCF-API implementation in the HuBMAP cloud](https://ccf-api.hubmapconsortium.org) ([source code](https://github.com/hubmapconsortium/ccf-ui))
 * [GTEx data registered via the CCF RUI](https://hubmapconsortium.github.io/ccf-gtex-pilot/ccf-eui.html)
 * [HuBMAP and GTEx tissue comparison by organ](https://hubmapconsortium.github.io/ccf-gtex-pilot/ccf-organs.html)
@@ -18,8 +27,8 @@
 | 1.2.1.3 Spatially register GTEx tissue samples that currently overlap with HuBMAP using the CCF Registration User Interface (RUI) (Joint) | 12/31/2022 | Complete | [demo1](https://hubmapconsortium.github.io/ccf-gtex-pilot/ccf-eui.html) [demo2](https://hubmapconsortium.github.io/ccf-gtex-pilot/ccf-organs.html)
 | 1.2.2.1 Implement and deploy the FAIR CCF-API for HuBMAP data in the HuBMAP cloud (IU) | 12/31/2022 | Complete | [live API](https://ccf-api.hubmapconsortium.org) [code](https://github.com/hubmapconsortium/ccf-ui/tree/main/projects/ccf-api)
 | 1.2.2.2 Validate CCF ASCT+B tables using GTEx RNA and snRNAseq data and revising the tables as needed (Joint) | 3/31/2022 | On Track |
-| 1.2.3.1 Implement CCF-API client libraries in Python and JavaScript for use in most cloud workspaces (IU) | 3/31/2022 | On Track |
+| 1.2.3.1 Implement CCF-API client libraries in Python and JavaScript for use in most cloud workspaces (IU) | 3/31/2022 | Complete | [See above](#primary-deliverables)
 | 1.2.3.2 Deploy EUI as a web component compatible with most cloud workspaces (IU) | 3/31/2022 | Complete | [demo](https://hubmapconsortium.github.io/ccf-gtex-pilot/ccf-eui.html)
-| 1.2.3.3 Demonstrate cross-search capabilities for ASCT+B data in support of increased interoperability of GTEx and HuBMAP data (GTEx) | 3/31/2022 | On Track |
+| 1.2.3.3 Demonstrate cross-search capabilities for ASCT+B data in support of increased interoperability of GTEx and HuBMAP data (GTEx) | 3/31/2022 | Complete | [demo](https://portal.hubmapconsortium.org/ccf-eui)
 | 1.2.4.1 Publish documentation for the CCF-API, data querying from cloud workspaces, and EUI integration into portals/cloud workspaces (IU) | 6/30/2022 | On Track |
 | 1.2.4.2 Develop a video tutorial and training module to be hosted on the GTEx portal to help users find and interact with the data on the HuBMAP EUI and for inclusion in an online course (Joint) | 6/30/2022 | Not Yet Initiated |
