@@ -31,5 +31,5 @@
 | 1.2.3.1 Implement CCF-API client libraries in Python and JavaScript for use in most cloud workspaces (IU) | 3/31/2022 | Complete | [See above](#primary-deliverables)
 | 1.2.3.2 Deploy EUI as a web component compatible with most cloud workspaces (IU) | 3/31/2022 | Complete | [demo](https://hubmapconsortium.github.io/ccf-gtex-pilot/ccf-eui.html) [gtex portal](https://gtexportal.org/home/eui)
 | 1.2.3.3 Demonstrate cross-search capabilities for ASCT+B data in support of increased interoperability of GTEx and HuBMAP data (GTEx) | 3/31/2022 | Complete | [demo](https://portal.hubmapconsortium.org/ccf-eui)
-| 1.2.4.1 Publish documentation for the CCF-API, data querying from cloud workspaces, and EUI integration into portals/cloud workspaces (IU) | 6/30/2022 | On Track | [API docs](https://ccf-api.hubmapconsortium.org/)
-| 1.2.4.2 Develop a video tutorial and training module to be hosted on the GTEx portal to help users find and interact with the data on the HuBMAP EUI and for inclusion in an online course (Joint) | 6/30/2022 | Not Yet Initiated |
+| 1.2.4.1 Publish documentation for the CCF-API, data querying from cloud workspaces, and EUI integration into portals/cloud workspaces (IU) | 6/30/2022 | Complete | [API docs](https://ccf-api.hubmapconsortium.org/)
+| 1.2.4.2 Develop a video tutorial and training module to be hosted on the GTEx portal to help users find and interact with the data on the HuBMAP EUI and for inclusion in an online course (Joint) | 6/30/2022 | In Process |
