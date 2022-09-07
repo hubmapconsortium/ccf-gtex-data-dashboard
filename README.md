@@ -1,5 +1,5 @@
 # CCF-GTEx Pilot
-## NIH Title: FAIR API to GTEx
+## NIH Title: FAIR API
 
 ## Primary Deliverables
 
